@@ -3,7 +3,6 @@
 Disclaimer: This was just a testgame, something I had fun creating, please be advised that can exist some bugs.
 
 ## Description
-A platformer game where Raquel embarks on a journey to find the sun in the darkness.
 In this 3-minute adventure, you play as Rachel, a girl with golden hair and slightly tanned skin, who must overcome various challenges to find the sun.
 
 ## Controls
