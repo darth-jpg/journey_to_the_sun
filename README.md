@@ -1,6 +1,6 @@
 # Raquel's Journey to the Sun
 
-A Python game built with Pygame.
+Disclaimer: This was just a testgame that I wanted to create, be aware that can have some bugs, have fun :)
 
 ## How to Play (Recommended)
 1. Open the executable: `dist\RaquelsJourney.exe`
@@ -32,5 +32,3 @@ Output: `dist\RaquelsJourney.exe`
 ## Troubleshooting
 - Missing assets: Delete `dist/` and `build/` folders, then run the build again.
 - No sound: Check your audio device and system volume.
-
-License: MIT.
