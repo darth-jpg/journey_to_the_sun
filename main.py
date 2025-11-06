@@ -8,6 +8,7 @@ from sprites import RaquelSprite, RicardoSprite
 from sound_manager import SoundManager
 from lighting import LightingSystem
 from visual_effects import ParallaxBackground, ParticleSystem, DialogueBox
+from utils import resource_path
 
 # Inicialize o mixer ANTES do pygame.init()
 pygame.mixer.pre_init(44100, -16, 2, 512)
@@ -34,7 +35,7 @@ pygame.display.set_caption("Raquel's Journey to the Sun")
 clock = pygame.time.Clock()
 
 # No início do seu main.py, depois de criar a janela:
-music_path = os.path.join("assets", "audio", "background_music.ogg")
+music_path = resource_path("assets", "audio", "background_music.ogg")
 pygame.mixer.music.load(music_path)
 pygame.mixer.music.set_volume(0.25)  # Volume reduzido para 25%
 pygame.mixer.music.play(-1)  # -1 faz a música repetir para sempre
@@ -122,9 +123,9 @@ class Game:
         self.current_dialogue = self.dialogue.get_dialogue("start")
         self.game_completed = False
         self.lighting = LightingSystem(SCREEN_WIDTH, SCREEN_HEIGHT)
-        self.background_night = pygame.image.load(os.path.join("assets", "sprites", "background_night.png")).convert()
+        self.background_night = pygame.image.load(resource_path("assets", "sprites", "background_night.png")).convert()
         self.background_night = pygame.transform.scale(self.background_night, (SCREEN_WIDTH, SCREEN_HEIGHT))
-        self.background_day = pygame.image.load(os.path.join("assets", "sprites", "background_day.png")).convert()
+        self.background_day = pygame.image.load(resource_path("assets", "sprites", "background_day.png")).convert()
         self.background_day = pygame.transform.scale(self.background_day, (SCREEN_WIDTH, SCREEN_HEIGHT))
         self.particles = ParticleSystem()
         self.dialogue_box = DialogueBox(SCREEN_WIDTH - 100, 150)
@@ -345,7 +346,7 @@ class Game:
         screen.fill((10, 10, 30))
         # Carrega a imagem apenas uma vez
         if not hasattr(self, 'start_img'):
-            self.start_img = pygame.image.load(os.path.join("assets", "sprites", "start_screen.png")).convert_alpha()
+            self.start_img = pygame.image.load(resource_path("assets", "sprites", "start_screen.png")).convert_alpha()
         # Centralizar verticalmente tudo (imagem + opções)
         img_height = self.start_img.get_height()
         options_height = len(self.menu_options) * 56 + (len(self.menu_options) - 1) * 30
@@ -401,7 +402,7 @@ class Game:
         if self.state == "completed":
             # Carrega a imagem apenas uma vez
             if not hasattr(self, 'victory_img'):
-                self.victory_img = pygame.image.load(os.path.join("assets", "sprites", "imagem.png")).convert_alpha()
+                self.victory_img = pygame.image.load(resource_path("assets", "sprites", "imagem.png")).convert_alpha()
             
             # Renderiza o texto de vitória mais para cima
             victory_text = pygame.font.Font(None, 48).render(

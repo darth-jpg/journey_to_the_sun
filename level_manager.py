@@ -2,6 +2,7 @@ import pygame
 import os
 import random
 from game_objects import Platform, AnimatedObstacle, AnimatedCollectible, AnimatedKey, LightSource, Water, Obstacle, Door
+from utils import resource_path
 
 # Importa as constantes de dimensão da tela
 SCREEN_WIDTH = 1280
@@ -11,7 +12,7 @@ class FinalGoal(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         # Carregar as imagens da estrela animada
-        self.star_imgs = [pygame.image.load(os.path.join("assets", "sprites", f"star_{i}.png")).convert_alpha() for i in range(4)]
+        self.star_imgs = [pygame.image.load(resource_path("assets", "sprites", f"star_{i}.png")).convert_alpha() for i in range(4)]
         self.current_frame = 0
         self.frame_count = 0
         self.frame_delay = 10

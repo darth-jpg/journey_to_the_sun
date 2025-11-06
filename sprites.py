@@ -1,5 +1,6 @@
 import pygame
 import os
+from utils import resource_path
 
 # Ensure the assets directory exists
 def ensure_assets_exist():
@@ -55,7 +56,7 @@ class RaquelSprite(AnimatedSprite):
         self.walking_frames = []
         for i in range(3):
             try:
-                frame = pygame.image.load(os.path.join(sprites_dir, f"raquel_walk_{i+1}.png")).convert_alpha()
+                frame = pygame.image.load(resource_path("assets", "sprites", f"raquel_walk_{i+1}.png")).convert_alpha()
                 print(f"Loaded frame {i+1} with size: {frame.get_size()}")  # Debug info
                 self.walking_frames.append(frame)
             except Exception as e:
@@ -77,8 +78,10 @@ class RaquelSprite(AnimatedSprite):
         for i, frame in enumerate(self.walking_frames):
             sprite_sheet.blit(frame, (i * frame_width, 0))
         
-        # Save temporary sprite sheet
-        sprite_path = os.path.join(sprites_dir, "raquel_sheet.png")
+        # Save temporary sprite sheet (use temp dir when packaged)
+        import tempfile
+        temp_dir = tempfile.gettempdir()
+        sprite_path = os.path.join(temp_dir, "raquel_sheet.png")
         pygame.image.save(sprite_sheet, sprite_path)
         
         super().__init__(position, sprite_path, len(self.walking_frames))
@@ -113,7 +116,7 @@ class RicardoSprite(AnimatedSprite):
         self.ricardo_frames = []
         for i in range(4):
             try:
-                frame = pygame.image.load(os.path.join(sprites_dir, f"ricardo{i+1}.png")).convert_alpha()
+                frame = pygame.image.load(resource_path("assets", "sprites", f"ricardo{i+1}.png")).convert_alpha()
                 print(f"Loaded Ricardo frame {i+1} with size: {frame.get_size()}")  # Debug info
                 self.ricardo_frames.append(frame)
             except Exception as e:
@@ -135,8 +138,10 @@ class RicardoSprite(AnimatedSprite):
         for i, frame in enumerate(self.ricardo_frames):
             sprite_sheet.blit(frame, (i * frame_width, 0))
         
-        # Save temporary sprite sheet
-        sprite_path = os.path.join(sprites_dir, "ricardo_sheet.png")
+        # Save temporary sprite sheet (use temp dir when packaged)
+        import tempfile
+        temp_dir = tempfile.gettempdir()
+        sprite_path = os.path.join(temp_dir, "ricardo_sheet.png")
         pygame.image.save(sprite_sheet, sprite_path)
         
         super().__init__(position, sprite_path, len(self.ricardo_frames)) 

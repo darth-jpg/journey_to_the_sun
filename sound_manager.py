@@ -1,7 +1,9 @@
 import pygame
 import os
+import sys
 import wave
 import struct
+from utils import resource_path
 
 class SoundManager:
     def __init__(self):
@@ -11,11 +13,11 @@ class SoundManager:
         self.current_music = None
         self.volume = 0.5
         
-        # Create sounds directory if it doesn't exist
-        os.makedirs("assets/audio", exist_ok=True)
-        
-        # Create placeholder sound effects
-        self.create_placeholder_sounds()
+        # Create sounds directory if it doesn't exist (only in dev mode)
+        if not hasattr(sys, '_MEIPASS'):
+            os.makedirs("assets/audio", exist_ok=True)
+            # Create placeholder sound effects
+            self.create_placeholder_sounds()
         
         # Load sounds
         self.load_sounds()
@@ -40,24 +42,24 @@ class SoundManager:
                     wav_file.writeframes(data)
         
         # Create jump sound (short, high pitch)
-        jump_file = "assets/audio/jump.wav"
+        jump_file = resource_path("assets", "audio", "jump.wav")
         create_sine_wave(440, 0.1, output_file=jump_file)  # 440 Hz for 0.1 seconds
-        
+
         # Create collect sound (medium pitch)
-        collect_file = "assets/audio/collect.wav"
+        collect_file = resource_path("assets", "audio", "collect.wav")
         create_sine_wave(880, 0.2, output_file=collect_file)  # 880 Hz for 0.2 seconds
-        
+
         # Create background music (longer, lower pitch)
-        background_file = "assets/audio/background.wav"
+        background_file = resource_path("assets", "audio", "background.wav")
         create_sine_wave(220, 1.0, output_file=background_file)  # 220 Hz for 1 second
     
     def load_sounds(self):
         # Load sound effects
-        self.sounds['jump'] = pygame.mixer.Sound("assets/audio/jump.wav")
-        self.sounds['collect'] = pygame.mixer.Sound("assets/audio/collect.wav")
+        self.sounds['jump'] = pygame.mixer.Sound(resource_path("assets", "audio", "jump.wav"))
+        self.sounds['collect'] = pygame.mixer.Sound(resource_path("assets", "audio", "collect.wav"))
         
         # Load music
-        self.music['background'] = "assets/audio/background.wav"
+        self.music['background'] = resource_path("assets", "audio", "background.wav")
         
         # Set volume for all sounds
         for sound in self.sounds.values():

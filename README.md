@@ -1,3 +1,52 @@
+# Raquel's Journey to the Sun
+
+Pequeno jogo em Python com Pygame.
+
+## Requisitos
+- Python 3.10+ no Windows
+- Internet (para instalar dependências na primeira vez)
+
+## Como executar em modo desenvolvimento
+```powershell
+cd "$Env:USERPROFILE\.cursor\raquel_journey"
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python main.py
+```
+
+## Como gerar o executável para Windows (simples, onefile)
+O script abaixo cria um executável único e inclui automaticamente um ícone caso `assets\sprites\icon.ico` exista.
+
+```powershell
+cd "$Env:USERPROFILE\.cursor\raquel_journey"
+.\build_windows.bat
+```
+
+- Saída esperada: `dist\RaquelsJourney.exe`
+- Duplo clique no `.exe` para jogar.
+
+## Estrutura de assets
+Os assets são carregados via um helper que funciona tanto em modo dev quanto empacotado:
+- `assets/audio/background_music.ogg`
+- `assets/sprites/start_screen.png`
+- `assets/sprites/background_day.png`
+- `assets/sprites/background_night.png`
+- `assets/sprites/imagem.png`
+
+Se adicionar novos assets, coloque-os dentro de `assets/` e, ao carregar no código, use o helper `resource_path("assets", "subpasta", "arquivo.ext")`.
+
+## Ícone do executável (opcional)
+- Coloque `assets\sprites\icon.ico`
+- O build usa automaticamente `--icon` se o ficheiro existir
+
+## Problemas comuns
+- Erro ao carregar assets no `.exe`: verifique se o caminho no código usa `resource_path(...)`.
+- Áudio sem tocar: confirme `background_music.ogg` em `assets/audio/` e que o volume não está a 0.
+- SmartScreen do Windows: clique em “Mais informações” > “Executar assim mesmo”.
+
+## Licença
+MIT (ver `LICENSE` no repositório principal, se aplicável).
 # Rachel's Journey to the Sun
 
 Disclaimer: This was just a testgame, something I had fun creating, please be advised that can exist some bugs.

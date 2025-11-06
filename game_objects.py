@@ -1,10 +1,11 @@
 import pygame
 import os
+from utils import resource_path
 
 class Platform(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height):
         super().__init__()
-        tile_path = os.path.join("assets", "sprites", "crate_tile.png")
+        tile_path = resource_path("assets", "sprites", "crate_tile.png")
         tile_img = pygame.image.load(tile_path).convert_alpha()
         tile_w, tile_h = tile_img.get_size()
         self.image = pygame.Surface((width, height), pygame.SRCALPHA)
@@ -29,7 +30,7 @@ class LightSource(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         # Animação das estrelas
-        self.star_imgs = [pygame.image.load(os.path.join("assets", "sprites", f"star_{i}.png")).convert_alpha() for i in range(4)]
+        self.star_imgs = [pygame.image.load(resource_path("assets", "sprites", f"star_{i}.png")).convert_alpha() for i in range(4)]
         self.current_frame = 0
         self.frame_count = 0
         self.frame_delay = 10
@@ -49,7 +50,7 @@ class AnimatedCollectible(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         # Carregar as imagens da joia animada
-        self.gem_imgs = [pygame.image.load(os.path.join("assets", "sprites", f"gem_{i}.png")).convert_alpha() for i in range(4)]
+        self.gem_imgs = [pygame.image.load(resource_path("assets", "sprites", f"gem_{i}.png")).convert_alpha() for i in range(4)]
         self.current_frame = 0
         self.frame_count = 0
         self.frame_delay = 10
@@ -69,7 +70,7 @@ class AnimatedKey(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         # Carregar as imagens da chave animada
-        self.key_imgs = [pygame.image.load(os.path.join("assets", "sprites", f"key_{i}.png")).convert_alpha() for i in range(4)]
+        self.key_imgs = [pygame.image.load(resource_path("assets", "sprites", f"key_{i}.png")).convert_alpha() for i in range(4)]
         self.current_frame = 0
         self.frame_count = 0
         self.frame_delay = 10
@@ -89,7 +90,7 @@ class AnimatedObstacle(pygame.sprite.Sprite):
     def __init__(self, x, y, width, height, left_limit=None, right_limit=None, speed=2):
         super().__init__()
         self.frames = [pygame.transform.scale(
-            pygame.image.load(os.path.join("assets", "sprites", f"obstacle_{i}.png")).convert_alpha(),
+            pygame.image.load(resource_path("assets", "sprites", f"obstacle_{i}.png")).convert_alpha(),
             (width, height)
         ) for i in range(4)]
         self.current_frame = 0
@@ -133,7 +134,7 @@ class Water(pygame.sprite.Sprite):
         # Carrega os 4 frames reais dos PNGs
         for i in range(4):
             try:
-                image_path = f"assets/sprites/water_{i+1}.png"
+                image_path = resource_path("assets", "sprites", f"water_{i+1}.png")
                 frame = pygame.image.load(image_path).convert_alpha()
                 frame = pygame.transform.scale(frame, (self.tile_width, self.tile_height))
                 self.frames.append(frame)
@@ -176,7 +177,7 @@ class Door(pygame.sprite.Sprite):
         self.closed_frames = []
         for i in range(4):
             try:
-                frame = pygame.image.load(os.path.join("assets", "sprites", f"doorclosed_{i}.png")).convert_alpha()
+                frame = pygame.image.load(resource_path("assets", "sprites", f"doorclosed_{i}.png")).convert_alpha()
                 self.closed_frames.append(frame)
             except Exception as e:
                 print(f"Erro ao carregar doorclosed_{i}.png: {e}")
@@ -188,7 +189,7 @@ class Door(pygame.sprite.Sprite):
         
         # Frame da porta aberta
         try:
-            self.open_frame = pygame.image.load(os.path.join("assets", "sprites", "dooropen00.png")).convert_alpha()
+            self.open_frame = pygame.image.load(resource_path("assets", "sprites", "dooropen00.png")).convert_alpha()
         except Exception as e:
             print(f"Erro ao carregar dooropen00.png: {e}")
             # Frame de fallback se não conseguir carregar
