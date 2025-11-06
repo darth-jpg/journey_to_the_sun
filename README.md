@@ -1,4 +1,4 @@
-# Raquel's Journey to the Sun
+# Rachel's Journey to the Sun
 
 Disclaimer: This was just a testgame that I wanted to create, be aware that can have some bugs, have fun :)
 
