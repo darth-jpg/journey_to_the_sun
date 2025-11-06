@@ -1,9 +1,10 @@
 # Raquel's Journey to the Sun
 
-A platformer game where Raquel embarks on a journey to find the sun in the darkness, narrated by Ricardo.
+Disclaimer: This was just a testgame, something I had fun creating, please be advised that can exist some bugs.
 
 ## Description
-In this 3-minute adventure, you play as Raquel, a girl with golden hair and slightly tanned skin, who must overcome various challenges to find the sun. The story is narrated by Ricardo, who has dark hair and fair skin.
+A platformer game where Raquel embarks on a journey to find the sun in the darkness, narrated by Ricardo.
+In this 3-minute adventure, you play as Raquel, a girl with golden hair and slightly tanned skin, who must overcome various challenges to find the sun. The story is narrated by Ricardo.
 
 ## Controls
 - **Left Arrow**: Move left
